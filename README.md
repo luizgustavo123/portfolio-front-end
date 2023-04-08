@@ -1,4 +1,4 @@
-Documentação do desenvolvimento de software para empresa Rio Doce
+Documentação de meu portifolio web
 
 Arquivo (pdv.html) página desenvolvida para registrar as vendas do estabelecimento, controlar o estoque e também se integrar com os módulos financeiros do 
 sistema
@@ -21,11 +21,17 @@ Arquivo (configuracoes.html) página desenvolvida para realizar as configuraçõ
 
 Arquivo (financeiro.html) página desenvolvida para exibir as informações financeiras da empresa como valor vendido e lucro, e controlar as contas a receber e pagar
 
+![ddd](https://user-images.githubusercontent.com/33435097/230694632-e783fcc6-031c-472e-b241-015829ff3202.jpg)
 
 Arquivo (funcionarios.html) página desenvolvida para realizar os cadastros dos funcionários da empresa
 
-Arquivo (login.html)  página desenvolvida para realizar a autenticação dos usuários que acessam o sistema, o usuário digita seu usuário e senha e então
+![image](https://user-images.githubusercontent.com/33435097/230694659-8fe2ed38-bef2-4466-a4c5-828b3c81fbbf.png)
+
+Arquivo (login.html) página desenvolvida para realizar a autenticação dos usuários que acessam o sistema, o usuário digita seu usuário e senha e então
 é feito a pesquisa no banco de dados, caso as informações estejam iguais no banco, o acesso é liberado
+
+![image](https://user-images.githubusercontent.com/33435097/230694705-4addc5ea-8403-4ec3-bd06-e918e3de3fb8.png)
+
 
 Arquivo (produtos.html) página desenvolvida para realizar os cadastros de todas as informações dos produtos 
 
