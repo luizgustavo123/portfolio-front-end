@@ -1175,14 +1175,7 @@
 
                     },
 
-                    /*      formata_valor() {
-                              verif_letra = !isNaN(parseFloat(this.editedItem_prod.valor_unitario.replaceAll(",", "").replaceAll(".", ""))) && isFinite(this.editedItem_prod.valor_unitario.replaceAll(",", "").replaceAll(".", ""));
-
-                              if (verif_letra == false) {
-                                  this.editedItem_prod.valor_unitario = '0'
-                              }
-
-                          },*/
+      
 
                     info_empresa() {
                         this.nome_empresa = sessionStorage.nome_empresa
@@ -2176,22 +2169,6 @@
                         }
                         this.soma_prod = total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
                     },
-
-
-
-
-                    /*    preench_func() {
-                            aa = 'gg'
-                            return aa
-                        },*/
-
-
-
-                    /* async info_empresa() {
-                         listar = await axios.get(this.url + '/api/empresa_config/listar/empresa_config?Id_empresa=' + sessionStorage.id_empresalogado)
-                         this.nome_empresa = listar.data[0].nome
-                     },
-                     */
 
                     imprimir() {
 
