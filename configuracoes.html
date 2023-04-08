@@ -1,0 +1,305 @@
+﻿<!--Desenvolvido por: LUIZ GUSTAVO VIEIRA DA SILVA-->
+<!--LinkedIn: https://www.linkedin.com/in/luiz-gustavo-dev-->
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="imagem/png" href="https://i.ibb.co/Cwbt6V2/LOGO-2.png" />
+    <meta charset="utf-8" />
+    <title>Softenter</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
+    <style>
+        #app {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="https://unpkg.com/axios@1.0.0/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/v-mask/dist/v-mask.min.js"></script>
+
+
+    <div id="app">
+        <v-app id="inspire">
+
+            <v-snackbar timeout="2000"
+                        centered
+                        elevation="24"
+                        vertical
+                        v-model="snackbar"
+                        :color="cor_aviso">
+                <v-icon left>{{ icon }}</v-icon>
+
+                {{ text_aviso }}
+
+            </v-snackbar>
+
+            <v-dialog persistent width="200" v-model="carregando">
+                <v-card color="primary"
+                        dark>
+                    <v-card-text>
+                        Carregando... Aguarde !
+                        <v-progress-linear indeterminate
+                                           color="white"
+                                           class="mb-0">
+                        </v-progress-linear>
+                    </v-card-text>
+                </v-card>
+            </v-dialog>
+
+            <div>
+                <v-toolbar dark
+                           prominent
+                           height=110
+                           src="https://i.ibb.co/kg2wfdH/config.jpg">
+
+                    <template v-slot:img="{ props }">
+                        <v-img v-bind="props"
+                               gradient="to right, #1672C4, #1672C4CC, #1672C4CC, #3141D6CC, #3141D6CC"></v-img>
+                    </template>
+
+                    <v-toolbar-title>{{nome_empresa}}</v-toolbar-title>
+
+
+                    <template v-slot:extension>
+                        <v-tabs align-with-title>
+                            <v-btn color="#FFFFFF" text small onclick="window.location.href ='https://riodoceatacado.com/agenda.html'"> <v-icon dark left>mdi-calendar</v-icon> Agenda/Vendas </v-btn>
+
+                            <v-btn color="#FFFFFF" text small onclick="window.location.href ='https://riodoceatacado.com/produtos.html'"> <v-icon dark left>mdi-food-variant</v-icon> Produtos e Serviços </v-btn>
+
+                            <v-btn color="#FFFFFF" text small onclick="window.location.href ='https://riodoceatacado.com/financeiro.html'"> <v-icon dark left>mdi-currency-usd</v-icon> Financeiro </v-btn>
+
+                            <v-menu open-on-hover offset-y>
+                                <template v-slot:activator="{ on, attrs }">
+                                    <v-btn color="#FFFFFF"
+                                           text
+                                           small
+                                           v-bind="attrs"
+                                           v-on="on">
+                                        mais
+                                        <v-icon right>
+                                            mdi-menu-down
+                                        </v-icon>
+                                    </v-btn>
+                                </template>
+                                <v-card class="mx-auto"
+                                        max-width="190"
+                                        tile>
+                                    <v-list-item>
+                                        <v-list-item-content>
+                                            <v-btn text small onclick="window.location.href ='https://riodoceatacado.com/clientes.html'"> <v-icon dark left>mdi-account-multiple</v-icon> Clientes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </v-btn>
+
+                                            <v-btn :disabled="disabled_sem_perm" text small onclick="window.location.href ='https://riodoceatacado.com/funcionarios.html'"> <v-icon dark left>mdi-account-group</v-icon> Funcionários &nbsp; </v-btn>
+
+                                            <v-btn :disabled="disabled_sem_perm" text small onclick="window.location.href ='https://riodoceatacado.com/configuracoes.html'"> <v-icon dark left>mdi-cogs</v-icon> Configurações </v-btn>
+                                        </v-list-item-content>
+
+                                </v-card>
+                            </v-menu>
+                        </v-tabs>
+                    </template>
+
+                </v-toolbar>
+            </div>
+
+            <v-card elevation="0">
+                <v-toolbar class="mb-2"
+                           color="#1E88E5"
+                           dark
+                           flat>
+                    <v-toolbar-title>Configurações</v-toolbar-title>
+                </v-toolbar>
+
+                <br>
+                <v-row dense justify="center">
+                    <v-col cols="6" sm="2">
+                        <v-checkbox v-model="check_control_est"
+                                    label="Controlar estoque"></v-checkbox>
+                    </v-col>
+                    <v-col cols="5" sm="2">
+                        <v-checkbox v-model="check_leitor"
+                                    label="Utilizar leitor de código de barras"></v-checkbox>
+                    </v-col>
+                    <v-col cols="8" sm="4">
+                    </v-col>
+                </v-row>
+
+                <v-row dense justify="center">
+                    <v-col cols="11" sm="4">
+                        <v-text-field v-model="nome_empresa" label="Nome da Empresa" counter maxlength="29" outlined></v-text-field>
+                    </v-col>
+                    <v-col cols="11" sm="4">
+                        <v-text-field v-model="endereco" label="Endereço" counter maxlength="32" outlined></v-text-field>
+                    </v-col>
+
+                </v-row>
+                <v-row dense justify="center">
+                    <v-col cols="6" sm="2">
+                        <v-text-field v-model="telefone" label="Telefone" v-mask="'(##)#####-####'" outlined></v-text-field>
+                    </v-col>
+                    <v-col cols="5" sm="2">
+                        <v-text-field v-model="cnpj" label="CNPJ" outlined></v-text-field>
+                    </v-col>
+                    <v-col cols="8" sm="4">
+                        <br><p><b>{{ licenca }}</b></p>
+                    </v-col>
+                </v-row>
+
+                <v-row dense justify="center">
+                    <v-col cols="2" sm="1">
+                        <v-btn color="primary"
+                               x-large
+                               @click="salvar()">
+                            Salvar
+                        </v-btn>
+                    </v-col>
+                </v-row>
+            </v-card>
+
+        </v-app>
+    </div>
+
+    <script>
+        Vue.use(VueMask.VueMaskPlugin);
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data: vm => ({
+                url: 'https://riodoceatacado.com',
+                show1: false,
+                usuario: '',
+                password: '',
+                dialog_login: true,
+                snackbar: false,
+                text_aviso: '',
+                cor_aviso: "success",
+                icon: 'mdi-check-circle',
+                nome_empresa: '',
+                endereco: '',
+                telefone: '',
+                cnpj: '',
+                licenca: '',
+                check_control_est: false,
+                check_leitor: false,
+
+            }),
+
+            watch: {
+
+            },
+
+            created() {
+                this.initialize()
+
+                this.info_empresa()
+
+                if (sessionStorage.login_ativo != 'true') {
+                    window.location.href = this.url + "/login.html";
+                }
+
+                if (sessionStorage.usuadm == '0') {
+                    this.disabled_sem_perm = true
+                }
+
+
+            },
+
+            methods: {
+
+
+                info_empresa() {
+                    this.nome_empresa = sessionStorage.nome_empresa
+                },
+
+                async initialize() {
+                    listar = await axios.get(this.url + '/api/empresa_config/listar/empresa_config?Id_empresa=' + sessionStorage.id_empresalogado)
+
+                    if (localStorage.control_est == "true") {
+                        this.check_control_est = true
+                    } else {
+                        this.check_control_est = false
+                    }
+
+                    if (localStorage.leitor_barras == "true") {
+                        this.check_leitor = true
+                    } else {
+                        this.check_leitor = false
+                    }
+
+
+
+                    this.nome_empresa = listar.data[0].nome
+                    this.endereco = listar.data[0].endereco
+                    this.telefone = listar.data[0].telefone
+                    this.cnpj = listar.data[0].cnpj
+
+
+
+                    this.licenca = 'Sua licença expira em: ' + listar.data[0].data_licenca.slice(0, 10)
+                },
+
+                async salvar() {
+                    try {
+                        this.carregando = true
+
+                        if (this.check_control_est == true) {
+                            localStorage.control_est = "true";
+                        } else {
+                            localStorage.control_est = "false";
+                        }
+
+                        if (this.check_leitor == true) {
+                            localStorage.leitor_barras = "true";
+                        } else {
+                            localStorage.leitor_barras = "false";
+                        }
+
+                        await axios.post(this.url + '/api/empresa_config/empresa_config/alterar?Nome=' + this.nome_empresa + '&Endereco=' + this.endereco + '&Telefone=' + this.telefone + '&Cnpj=' + this.cnpj + '&Id=' + sessionStorage.id_empresalogado)
+
+                        this.carregando = false
+
+                        this.snackbar = true
+                        this.text_aviso = 'Salvo com sucesso !'
+                        this.cor_aviso = "success"
+                        this.icon = "mdi-mdi-check-circle"
+
+                        setTimeout(function () {
+                            window.location.href = "https://riodoceatacado.com/login.html";
+                        }, 2000);
+                    }
+                    catch (err) {
+                        alert("Erro: " + err.message);
+                        this.carregando = false
+                    }
+                },
+
+
+
+                /*   async login() {
+                      listar = await axios.get(this.url + '/api/funcionarios/listar/funcionarios_usu?Usuario=' + this.usuario + '&Senha=' + this.password)
+
+                      if (listar.data.length > 0) {
+                          sessionStorage.login_ativo = true
+                          sessionStorage.id_usulogado = listar.data[0].id
+                          sessionStorage.id_empresalogado = listar.data[0].fk_empresa
+                          sessionStorage.usuadm = listar.data[0].usu_adm
+                          this.dialog_login = false
+                      } else {
+                          this.snackbar = true,
+                              this.text_aviso = 'Usuário ou senha incorreto !'
+                          this.cor_aviso = "red"
+                          this.icon = "mdi-alert-circle-outline"
+                      }
+                  }, */
+            }
+
+        })
+    </script>
+
+</body>
+</html>
