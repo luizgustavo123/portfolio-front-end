@@ -8,7 +8,7 @@ sistema
 
 Arquivo (catalogo.html) página de ecommerce da empresa, nesta página é exibido apenas os produtos disponíveis em estoque, nela o cliente pode visualizar a foto do produto, preço e descrição, pode adicionar vários itens no carinho, mudar quantidade que quer comprar e preencher dados de entrega, após finalizar a compra é enviado a cópia do pedido para o WhatsApp da empresa e também armazena no banco de dados do sistema para ser visualizado e separado para entrega 
 
-![image](https://user-images.githubusercontent.com/33435097/230632109-e318b555-8a0f-4261-8bbd-ae34d6909a01.png)
+![image](https://user-images.githubusercontent.com/33435097/230695495-73495f40-9382-4915-8273-d8b31c53deeb.png)
 
 
 Arquivo (clientes.html) página desenvolvida para realizar os cadastros dos clientes da empresa
