@@ -35,5 +35,6 @@ Arquivo (login.html) página desenvolvida para realizar a autenticação dos usu
 
 Arquivo (produtos.html) página desenvolvida para realizar os cadastros de todas as informações dos produtos 
 
+![image](https://user-images.githubusercontent.com/33435097/230695169-3e744f46-61ab-4b11-ac45-c9a078c1b7dd.png)
 
-Todas as paginas do projeto foram desenvolvidas utilizando no front-end html, css, VUE.js, Vuetify e no back-end as APIS foram desenvolvidas em c#
+Todas as paginas do projeto foram desenvolvidas utilizando no front-end html, css, VUE.js, Vue.js, Vuetify e no back-end as APIS foram aprimoradas em c#
