@@ -1,4 +1,4 @@
-Documentação de meu portifolio web
+Documentação de meu portfólio front end
 
 Arquivo (pdv.html) página desenvolvida para registrar as vendas do estabelecimento, controlar o estoque e também se integrar com os módulos financeiros do 
 sistema
