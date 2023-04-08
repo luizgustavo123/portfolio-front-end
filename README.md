@@ -15,7 +15,7 @@ Arquivo (clientes.html) página desenvolvida para realizar os cadastros dos clie
 
 ![image](https://user-images.githubusercontent.com/33435097/230632542-abc16d47-3337-4ed2-860f-6464d6e1fc9b.png)
 
-Arquivo (configuracoes.html) página desenvolvida para realizar as configurações de como o sistema ira operar, essas configurações são salvas em sessionStorage do navegador ou seja, essas configurações podem ser alteradas da maneira que desejar em cada máquina
+Arquivo (configuracoes.html) página desenvolvida para realizar as configurações de como o sistema irá operar, essas configurações são salvas no sessionStorage do navegador, ou seja essas configurações podem ser alteradas de forma diferente em cada máquina
 
 ![image](https://user-images.githubusercontent.com/33435097/230632601-e4b7fdea-a49b-4b10-830b-c15f31824d45.png)
 
